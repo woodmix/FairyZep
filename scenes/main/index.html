@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <base href="../../" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" href="appicon128.png">
+  <title>FairyZep</title>
+
+  <script type="text/javascript" src="lib/include.js"></script>
+  <script type="text/javascript" src="scenes/main/Main.js"></script>
+  <script type="text/javascript" src="scenes/main/MainStage.js"></script>
+  <script type="text/javascript" src="scenes/main/Zep.js"></script>
+  <script type="text/javascript" src="scenes/main/Scorer.js"></script>
+  <script type="text/javascript" src="scenes/main/SnowMistant.js"></script>
+  <script type="text/javascript" src="scenes/main/ScoreDisplayer.js"></script>
+  <script type="text/javascript" src="scenes/main/Airball.js"></script>
+  <script type="text/javascript" src="scenes/main/AirballManager.js"></script>
+  <script type="text/javascript" src="scenes/main/StarManager.js"></script>
+  <script type="text/javascript" src="scenes/main/TrackManager.js"></script>
+  <script type="text/javascript" src="scenes/main/Background.js"></script>
+  <script type="text/javascript" src="scenes/main/Finisher.js"></script>
+  <script type="text/javascript" src="scenes/main/Grassland.js"></script>
+  <script type="text/javascript" src="scenes/main/Mountain.js"></script>
+  <script type="text/javascript" src="scenes/main/Clouds.js"></script>
+  <script type="text/javascript" src="scenes/main/Plot.js"></script>
+  <script type="text/javascript"><!--
+
+    var Settings = {
+        "debug": false,                       // デバッグモードかどうか。
+    };
+
+    var g_scene;
+
+    $(document).ready(function() {
+
+        g_scene = new Main("canvas");
+
+        // デバッグ時は <body> に class="debug" を付ける。
+        if(Settings["debug"])
+            $(document.body).addClass("debug");
+
+        // なんとかアドレスバーに引っ込んでもらうためのもの。完全に効くとは限らない。
+        window.scrollTo(0,0);
+        setTimeout(function(){
+            window.scrollTo(0,100);
+        }, 3000);
+    });
+
+  --></script>
+
+  <style type="text/css"><!--
+
+    body {
+        margin: 0px;
+        background-color: black;
+        position: absolute;
+        left:0px; top:0px; right:0px; bottom:-100px;
+    }
+
+    .full {
+        position: fixed;
+        left:0px; top:0px; right:0px; bottom:0px;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+    }
+
+    .center {
+        position: absolute;
+        left:0px; top:0px; right:0px; bottom:0px;
+        margin: auto;
+    }
+
+    #canvas {
+        min-width:  240px;
+        min-height: 240px;
+        max-width:  1920px;
+        max-height: 1024px;
+    }
+
+    #debug {
+        display: none;
+        position: fixed;
+        right: 0px;
+        top: 0px;
+        letter-spacing: -1ex;
+        opacity: 0.7;
+    }
+    body.debug #debug {
+        display: block;
+    }
+    #debug * {
+        vertical-align: top;
+    }
+
+--></style>
+</head>
+
+<body>
+
+  <canvas class="full" id="canvas"></canvas>
+
+  <div id="debug">
+    <button onclick="g_scene.start()">start</button>
+    <button onclick="g_scene.stop()">stop</button>
+    <button onclick="location.reload()">reload</button>
+    <button onclick="g_scene.snapshot()">shot</button>
+    <button onclick="g_scene.tick(g_scene.now + 10)">tick(10)</button>
+    <button onclick="g_scene.test()">test</button>
+    <button onclick="console.log(g_scene); console.log(DebugInfo.getStrataMap(g_scene));">dump</button>
+  </div>
+
+</body>
+
+</html>
